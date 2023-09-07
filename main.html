@@ -10,8 +10,32 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
-			arr.sort();
-			console.log(arr[1]);
+			if (arr.length < 2) {
+        return "There is no second highest element.";
+    }
+
+    let firstMax = -Infinity; // Initialize the first maximum to negative infinity
+    let secondMax = -Infinity; // Initialize the second maximum to negative infinity
+
+    for (let i = 0; i < arr.length; i++) {
+        const currentNumber = parseFloat(arr[i]);
+
+        if (!isNaN(currentNumber)) {
+            if (currentNumber > firstMax) {
+                secondMax = firstMax;
+                firstMax = currentNumber;
+            } else if (currentNumber > secondMax && currentNumber < firstMax) {
+                secondMax = currentNumber;
+            }
+        }
+    }
+
+    if (secondMax === -Infinity) {
+        return "There is no second highest element.";
+    }
+
+    return secondMax;
+			
 		}
 
 		function Main() {

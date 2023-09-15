@@ -8,35 +8,26 @@
 
 <body>	
 	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			if (arr.length < 2) {
-        return "There is no second highest element.";
-    }
 
-    let firstMax = -Infinity; // Initialize the first maximum to negative infinity
-    let secondMax = -Infinity; // Initialize the second maximum to negative infinity
+function secondHighest(arr) {
+  // Check if the array is empty or has only one element
+  if (arr.length <= 1) {
+    return -Infinity;
+  }
 
-    for (let i = 0; i < arr.length; i++) {
-        const currentNumber = parseFloat(arr[i]);
+  // Remove duplicates from the array
+  const uniqueArr = Array.from(new Set(arr));
 
-        if (!isNaN(currentNumber)) {
-            if (currentNumber > firstMax) {
-                secondMax = firstMax;
-                firstMax = currentNumber;
-            } else if (currentNumber > secondMax && currentNumber < firstMax) {
-                secondMax = currentNumber;
-            }
-        }
-    }
+  // Sort the array in descending order
+  uniqueArr.sort((a, b) => b - a);
 
-    if (secondMax === -Infinity) {
-        return "There is no second highest element.";
-    }
-
-    return secondMax;
-			
-		}
+  // Check if there is a second element, otherwise, return -Infinity
+  if (uniqueArr.length >= 2) {
+    return uniqueArr[1];
+  } else {
+    return -Infinity;
+  }
+}
 
 		function Main() {
 			var n = prompt("Enter the number of elements");
